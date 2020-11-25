@@ -1,0 +1,10 @@
+
+
+<ul>
+    {% for doc in Doctor %}
+    <li>
+        <h2><a href=""> {{ doc.first_name }}</a></h2>
+        <p> {{ doc.bio }} </p>
+    </li>
+    {% endfor %}
+</ul>

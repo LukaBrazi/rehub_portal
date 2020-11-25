@@ -38,8 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'doctors',
+    'registration',
 
 ]
+REGISTRATION_AUTO_LOGIN = False
+REGISTRATION_SITE_USER_EMAIL = 'Dimas130790@gmail.com'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

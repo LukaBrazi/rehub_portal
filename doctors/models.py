@@ -1,10 +1,12 @@
 from datetime import date
 
-from django.contrib.auth.base_user import AbstractBaseUser
+from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 from django.db import models
 
-# Create your models here.
 from django.urls import reverse
+
+
+
 
 
 class Profession(models.Model):
@@ -31,11 +33,8 @@ class Service(models.Model):
                       ('MS', 'Massage'),
                       ('RT', 'Rehabilitation training'),
                       ]
-    name = models.CharField("your service", max_length=23,
-                            choices=STATUS_CHOICES,
-                            default='instructor')
     description = models.TextField('Description', max_length=1000)
-    price = models.IntegerField('Price for this service', max_length=1000)
+    price = models.IntegerField('Price for this service')
 
     class Meta:
         verbose_name = "Services"
@@ -43,11 +42,14 @@ class Service(models.Model):
 
 
 class User(AbstractBaseUser):
+    user_name = models.CharField("User name", max_length=100, unique=True)
     name = models.CharField("Name", max_length=100)
     age = models.PositiveSmallIntegerField("Age", default=0)
-    email = models.EmailField("Email")
+    email = models.EmailField("Email", unique=True)
     avatar = models.ImageField("Avatar", upload_to="users/")
-    service = models.ManyToManyField(Service, related_name="services")
+    service = models.ManyToManyField(Service)
+    USERNAME_NAME = 'email'
+    USERNAME_FIELD = 'email'
 
     def __str__(self):
         return self.name
@@ -61,6 +63,7 @@ class User(AbstractBaseUser):
 
 
 class Doctor(AbstractBaseUser):
+    user_name = models.CharField("User name", max_length=100, unique=True)
     first_name = models.CharField("doctor's first name", max_length=250, blank=False,
                                   error_messages={'blank': 'Cant be empty'})
     second_name = models.CharField("doctor's second name", max_length=250, blank=False,
@@ -71,7 +74,10 @@ class Doctor(AbstractBaseUser):
     date_of_registration = models.DateTimeField("doctor's date of registration", default=date.today)
     profession = models.ForeignKey(Profession, verbose_name="Profession", on_delete=models.SET_NULL, null=True)
     patient = models.ForeignKey(User, verbose_name="Patient", on_delete=models.SET_NULL, null=True)
-    service = models.ManyToManyField(Service,  related_name="services")
+    email = models.EmailField("Email", unique=True)
+    USERNAME_NAME = 'email'
+    USERNAME_FIELD = 'email'
+    service = models.ManyToManyField(Service)
 
     def __str__(self):
         return self.first_name
@@ -80,8 +86,8 @@ class Doctor(AbstractBaseUser):
         return reverse('doc_detail', kwargs={"slug": self.first_name})
 
     class Meta:
-        verbose_name = "Users"
-        verbose_name_plural = "User"
+        verbose_name = "Doctors"
+        verbose_name_plural = "Doctor"
 
 
 class RatingStar(models.Model):

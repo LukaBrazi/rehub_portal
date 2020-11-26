@@ -1,5 +1,5 @@
 """
-WSGI config for rehab_portal project.
+WSGI config for rehub_portal project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'rehab_portal.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'rehub_portal.settings')
 
 application = get_wsgi_application()

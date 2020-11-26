@@ -1,5 +1,5 @@
 """
-ASGI config for rehab_portal project.
+ASGI config for rehub_portal project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'rehab_portal.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'rehub_portal.settings')
 
 application = get_asgi_application()

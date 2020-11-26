@@ -52,7 +52,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'rehub_portal.urls'
 
-AUTH_USER_MODEL = 'doctors.AdminUser'
+AUTH_USER_MODEL = 'doctors.User'
 
 TEMPLATES = [
     {

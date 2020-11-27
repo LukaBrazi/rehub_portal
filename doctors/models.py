@@ -36,11 +36,6 @@ class UserManager(BaseUserManager):
         return user
 
 
-#
-#     def get_by_natural_key(self, email_):
-#         return self.get(code_number=email_)
-
-
 class Profession(models.Model):
     STATUS_CHOICES = [('Rehab', 'Rehabilitator'),
                       ('Physio', 'Physiotherapist'),
@@ -86,6 +81,7 @@ class User(AbstractBaseUser):
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
 
+    # This next two params need to create user not remove them
     def has_perm(self, perm, obj=None):
         return self.is_superuser
 
@@ -122,6 +118,7 @@ class Doctor(AbstractBaseUser):
     is_superuser = models.BooleanField(default=False)
     objects = UserManager()
 
+    # This next two params need to create user not remove them 
     def has_perm(self, perm, obj=None):
         return self.is_superuser
 

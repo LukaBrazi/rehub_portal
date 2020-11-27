@@ -118,7 +118,7 @@ class Doctor(AbstractBaseUser):
     is_superuser = models.BooleanField(default=False)
     objects = UserManager()
 
-    # This next two params need to create user not remove them 
+    # This next two params need to create user not remove them
     def has_perm(self, perm, obj=None):
         return self.is_superuser
 

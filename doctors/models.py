@@ -62,6 +62,9 @@ class Service(models.Model):
                       ]
     description = models.TextField('Description', max_length=1000)
     price = models.IntegerField('Price for this service')
+    name = models.CharField("doctor's profession", max_length=21,
+                            choices=STATUS_CHOICES,
+                            default='training')
 
     class Meta:
         verbose_name = "Services"

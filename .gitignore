@@ -116,10 +116,12 @@ venv.bak/
 
 # Rope project settings
 .ropeproject
-
+doc_avatar
+doc_diploma
+users
 # mkdocs documentation
 /site
-
+media
 # mypy
 .mypy_cache/
 .dmypy.json

@@ -4,6 +4,7 @@ from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 from django.db import models
 
 from django.urls import reverse
+from django.utils import timezone
 
 
 class UserManager(BaseUserManager):
@@ -66,6 +67,9 @@ class Service(models.Model):
                             choices=STATUS_CHOICES,
                             default='training')
 
+    def __str__(self):
+        return self.name
+
     class Meta:
         verbose_name = "Services"
         verbose_name_plural = "Service"
@@ -111,7 +115,7 @@ class Doctor(AbstractBaseUser):
     bio = models.TextField("doctor's biography")
     diploma = models.ImageField("doctor's diplomas", upload_to="doc_diploma/")
     avatar = models.ImageField("doctor's photo", upload_to='doc_avatar/')
-    date_of_registration = models.DateTimeField("doctor's date of registration", default=date.today)
+    date_of_registration = models.DateTimeField('Date of registration', default=timezone.now)
     profession = models.ForeignKey(Profession, verbose_name="Profession", on_delete=models.SET_NULL, null=True)
     email = models.EmailField("Email", unique=True)
     USERNAME_NAME = 'email'

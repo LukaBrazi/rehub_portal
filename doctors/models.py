@@ -114,7 +114,6 @@ class Doctor(AbstractBaseUser):
     avatar = models.ImageField("doctor's photo", upload_to='doc_avatar/')
     date_of_registration = models.DateTimeField("doctor's date of registration", default=date.today)
     profession = models.ForeignKey(Profession, verbose_name="Profession", on_delete=models.SET_NULL, null=True)
-    patient = models.ForeignKey(User, verbose_name="Patient", on_delete=models.SET_NULL, null=True)
     email = models.EmailField("Email", unique=True)
     USERNAME_NAME = 'email'
     USERNAME_FIELD = 'email'
@@ -163,3 +162,10 @@ class Rating(models.Model):
     class Meta:
         verbose_name = "Rating"
         verbose_name_plural = "Ratings"
+
+
+class Review(models.Model):
+    title = models.CharField('Title', max_length=100)
+    text = models.TextField('Text', max_length=1000)
+    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE, verbose_name="doctor")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="user")

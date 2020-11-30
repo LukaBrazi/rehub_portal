@@ -3,7 +3,7 @@
 {% block content %}
     {% for doctor in doctor_list%}
         <p><img src="{{doctor.avatar.url}}" alt="Doc photo"></p>
-        <p>{{doctor.first_name}}</p>
+        <h2><a href="{% url 'doctor_detail' doctor.pk %}"> {{ doctor.first_name }}</a></h2>
          <p>{{doctor.second_name}}</p>
         <p>{{doctor.profession.name}}</p>
     {%endfor%}

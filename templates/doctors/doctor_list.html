@@ -1,21 +1,33 @@
 {% extends 'base.html'%}
-
 {% block content %}
-      <div class="album py-5 bg-light">
-        <div class="container">
+          <div class="left-ads-display col-lg-9">
+        <div class="row">
             {% for doctor in doctor_list%}
-          <div class="row">
-            <div class="col-md-4">
-              <div class="card mb-4 box-shadow">
-                <p><img class="img-circle" src="{{doctor.avatar.url}}"  width="110" height="110"  alt="Doc photo"></p>
-                <div class="card-body">
-                  <h2><a href="{% url 'doctor_detail' doctor.pk %}"> {{ doctor.first_name }}</a></h2>
-                     <br>{{doctor.second_name}}</br>
-                     <br>{{doctor.profession.name}}</br>
-              </div>
-                {%endfor%}
-            </div>
-          </div>
-          </div>
+                <div class="col-md-4 product-men">
+                    <div class="product-shoe-info editContent text-center mt-lg-4">
+                        <div class="men-thumb-item">
+                            <img class="img-circle" src="{{ doctor.avatar.url }}" width="110" height="110" alt="">
+                        </div>
+                        <div class="item-info-product">
+                            <h4 class="">
+                                <a href="{% url 'doctor_detail' doctor.pk %}"> {{ doctor.first_name }}</a>
+                            </h4>
+                            <div class="product_price">
+                                <div class="grid-price">
+                                    <span class="money editContent">{{doctor.second_name}}</span>
+                                </div>
+                            </div>
+                            <div class="product_price">
+                                <div class="grid-price">
+                                    <span class="money editContent">{{doctor.profession.get_name_display}}</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-{% endblock%}
+                </div>
+            {% endfor %}
+        </div>
+        <div class="grid-img-right mt-4 text-right bg bg1" >
+        </div>
+    </div>
+{% endblock %}

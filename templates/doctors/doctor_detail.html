@@ -1,10 +1,11 @@
 {% extends 'base.html'%}
 
 {% block content %}
-        <img class="img-circle" src="{{doctor_detail.avatar.url}}" width="110" height="110" alt="">
+        <img class="img" src="{{doctor_detail.avatar.url}}" width="110" height="110" alt="">
         <h4>{{doctor_detail.first_name}}</h4>
          <h4>{{doctor_detail.second_name}}</h4>
           <img class="img" src="{{doctor_detail.diploma.url}}" width="110" height="110" alt="">
+          <h4>{{doctor_detail.profession.get_name_display}}</h4>
           <p>{{doctor_detail.bio}}</p>
         <p>{{doctor_detail.date_of_registration}}</p>
 {% endblock %}

@@ -1,11 +1,33 @@
 {% extends 'base.html'%}
-
 {% block content %}
-    {% for doctor in doctor_list%}
-        <p><img src="{{doctor.avatar.url}}" alt="Doc photo"></p>
-        <p>{{doctor.first_name}}</p>
-         <p>{{doctor.second_name}}</p>
-        <p>{{doctor.profession.get_name_display}}</p>
-    {%endfor%}
-
+          <div class="left-ads-display col-lg-9">
+        <div class="row">
+            {% for doctor in doctor_list%}
+                <div class="col-md-4 product-men">
+                    <div class="product-shoe-info editContent text-center mt-lg-4">
+                        <div class="men-thumb-item">
+                            <img class="img-circle" src="{{ doctor.avatar.url }}" width="110" height="110" alt="">
+                        </div>
+                        <div class="item-info-product">
+                            <h4 class="">
+                                <a href="{% url 'doctor_detail' doctor.pk %}"> {{ doctor.first_name }}</a>
+                            </h4>
+                            <div class="product_price">
+                                <div class="grid-price">
+                                    <span class="money editContent">{{doctor.second_name}}</span>
+                                </div>
+                            </div>
+                            <div class="product_price">
+                                <div class="grid-price">
+                                    <span class="money editContent">{{doctor.profession.get_name_display}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="grid-img-right mt-4 text-right bg bg1" >
+        </div>
+    </div>
 {% endblock %}

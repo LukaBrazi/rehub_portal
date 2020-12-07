@@ -99,7 +99,7 @@ class User(AbstractBaseUser):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('user_detail', kwargs={"slug": self.name})
+        return reverse('doctor_detail', kwargs={"slug": self.name})
 
     class Meta:
         verbose_name = "Users"
@@ -136,7 +136,7 @@ class Doctor(AbstractBaseUser):
         return self.first_name
 
     def get_absolute_url(self):
-        return reverse('doc_detail', kwargs={"slug": self.first_name})
+        return reverse('doctor_detail', kwargs={"pk": self.pk})
 
     class Meta:
         verbose_name = "Doctors"
